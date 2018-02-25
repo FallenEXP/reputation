@@ -1,9 +1,8 @@
 const MySQL = require("sync-mysql");
-let conn;
 
 exports.connect = function(user, pass, host, db) {
 	try {
-		let conn = new MySQL({
+		global.conn = new MySQL({
 	    host     : host,
 	    user     : user,
 	    password : pass,
