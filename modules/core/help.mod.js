@@ -9,10 +9,13 @@ exports.load = function() {
     })
 
     msg.channel.send({embed:{
-      "title": "Help",
+      "title": "Reputation Bot Help",
       "color": parseInt(config.colors.info,16),
       "description": output,
-			"footer": "reputation bot "+process.env.HEROKU_RELEASE_VERSION
+			"footer": {
+				"text": "reputation bot "+process.env.HEROKU_RELEASE_VERSION
+			},
+			"url": "https://github.com/Filip9696/reputation",
     }});
 	}).setDescription('Shows This Message');
 }
