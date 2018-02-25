@@ -19,6 +19,8 @@ exports.close = function() {
   conn.end()
 }
 
-exports.query = function(query) {
-  return conn.query(query)
+
+exports.getRep = function(id) {
+	var results = query('SELECT * FROM `userdata` WHERE `id` = '+id)
+	return results
 }
