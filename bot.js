@@ -16,7 +16,7 @@ if (conresult == true) {
   console.log("MySQL connection established".green)
 } else {
   console.log("MySQL error!".red+conresult)
-}*
+}
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
