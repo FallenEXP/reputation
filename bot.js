@@ -1,3 +1,4 @@
+
 /////////////////////
 // Simple Bot Base //
 /////////////////////
@@ -18,9 +19,18 @@ client.login(process.env.token);
 client.on('ready', () => {
   console.log((`[BOT] Logged in as ${client.user.tag}!`).green);
 });
-
-client.on("message", (message) => {
-  if (message.content.startsWith("ping")) {
-    message.channel.send("pong!");
+var today;
+client.on("message", (msg) => {
+  var day = new Date().getDate; //get todays day
+  if (today != day) {
+    today = day
+    //take 10% from all users
+  }
+  if (msg.content.startsWith("!")) {
+    var args = msg.content.split(" ")
+    var cmd = args[0].substring(1).toLowerCase()
+    }
+  if (cmd == "ping") {
+    msg.channel.send("pong!");
   }
 });
