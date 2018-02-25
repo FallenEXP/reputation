@@ -6,7 +6,8 @@
   "colors": {
     "good": "2ecc71",
     "warning": "d35400",
-    "error": "c0392b"
+    "error": "c0392b",
+    "info": "2980b9"
   },
   "roles": {
 		"owner": "Leader",
