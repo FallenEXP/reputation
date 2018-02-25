@@ -11,11 +11,11 @@ exports.load = function() {
           "fields": [
             {
               "name": ":inbox_tray: Input",
-              "value": "```js\n"+code+"```"
+              "value": "```js\n"+code.replace('```',"\u2063`\u2063`\u2063`\u2063")+"```"
             },
             {
               "name": ":outbox_tray: Output",
-              "value": "```js\n"+result+"```"
+              "value": "```js\n"+result.replace('```',"\u2063`\u2063`\u2063`\u2063")+"```"
             }
           ]
         }});
@@ -26,11 +26,11 @@ exports.load = function() {
           "fields": [
             {
               "name": ":inbox_tray: Input",
-              "value": "```js\n"+code+"```"
+              "value": "```js\n"+code.replace('```',"\u2063`\u2063`\u2063`\u2063")+"```"
             },
             {
               "name": ":x: Error",
-              "value": "```js\n"+err.toString()+"```"
+              "value": "```js\n"+err.toString().replace('```',"\u2063`\u2063`\u2063`\u2063")+"```"
             }
           ]
         }});
