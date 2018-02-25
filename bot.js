@@ -32,7 +32,7 @@ global.api = {
 	}
 }
 
-require("./utils/walkSync.js")('modules').filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
+require("./utils/walkSync.js").walkSync('modules').filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
 	try {
 		require(file);
 		console.log("Loaded "+file);
