@@ -7,9 +7,9 @@ exports.load = function() {
 	exp.connect = function() {
 		try {
 			global.conn = new MySQL({
-		    host     : process.env.mysqluser,
-		    user     : process.env.mysqlpass,
-		    password : process.env.mysqlhost,
+		    host     : process.env.mysqlhost,
+		    user     : process.env.mysqluser,
+		    password : process.env.mysqlpass,
 		    database : process.env.mysqldb
 		  });
 		} catch (e) {
