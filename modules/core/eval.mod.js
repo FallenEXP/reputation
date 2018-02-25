@@ -1,3 +1,4 @@
+const util = require('util');
 exports.modID = "eval";
 exports.load = function() {
 	api.commands.add('eval', msg=>{
@@ -7,12 +8,7 @@ exports.load = function() {
         var result = eval(code);
 				if(result === undefined) result = 'undefined';
 				if(typeof result === 'object') {
-					try {
-						let json = JSON.stringify(result);
-						result = json;
-					} catch (e) {
-						// do nothihng
-					}
+					result = util.inspect(result, {showHidden: false, depth: 10});
 				}
         msg.channel.send({embed:{
           "title": "Eval",
