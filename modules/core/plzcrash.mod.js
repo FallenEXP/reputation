@@ -2,7 +2,7 @@ exports.modID = "plzcrash";
 exports.load = function() {
 	api.addCommand('plzcrash', msg=>{
     if(config.admins.includes(msg.author.id)) {
-      eval(true = false)
+      while(true) { Math.random() }
     } else {
       msg.channel.send('You are not admin.')
     }
