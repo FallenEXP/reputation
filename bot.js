@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const colors = require('colors');
 const client = new Discord.Client();
 const db = require("./utils/mysql.js");
 const fs = require("fs");
@@ -17,6 +16,16 @@ if (conresult == true) {
   console.log("MySQL connection established".green)
 } else {
   console.log("MySQL error!".red+conresult)
+}
+
+let commands = [];
+global.api = {
+	addCommand = function(name, callback) {
+		commands.push({name: name, callback: callback})
+	}
+	onMessage = function(callback) {
+		client.on('message',callback)
+	}
 }
 
 client.on('ready', () => {

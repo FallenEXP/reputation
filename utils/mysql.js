@@ -10,7 +10,7 @@ exports.connect = function(user, pass, host, db) {
 	    database : db
 	  });
 	} catch (e) {
-		return false;
+		return e;
 	}
   return true;
 }
