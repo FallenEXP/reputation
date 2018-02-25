@@ -4,7 +4,6 @@ const db = require("./modules/mysql.js");
 const fs = require("fs");
 const config = JSON.parse(fs.readFileSync('config.json'))
 
-const mysql = require("mysql");
 var mysqluser = process.env.mysqluser;
 var mysqlpass = process.env.mysqlpass;
 var mysqlhost = process.env.mysqlhost;
