@@ -9,6 +9,7 @@ var mysqlpass = process.env.mysqlpass;
 var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
+//TODO: make a database module
 console.log("Attempting mysql connection...".yellow)
 if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
   console.log("MySQL connection established".green)
@@ -21,8 +22,11 @@ global.api = {
 	addCommand: function(name, callback) {
 		commands[name] = callback;
 	},
+	//automatically excludes bots
 	onMessage: function(callback) {
-		client.on('message',callback)
+		client.on('message',function(msg) {
+			if(!msg.author.bot) callback();
+		})
 	},
 	getRep: function () {
 		//todo
@@ -34,8 +38,10 @@ global.api = {
 
 require("./utils/walkSync.js").walkSync('modules')[0].filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
 	try {
-		require("./"+file);
-		console.log("Loaded "+file);
+		let mod = require("./"+file);
+		if('load' in mod && 'modID' in mod) {
+			mod.load();
+		} else throw "Missing Information"
 	} catch (e) {
 		console.log("Cannot Load "+file+": "+e);
 	}
@@ -48,14 +54,6 @@ client.on('ready', () => {
 var today;
 client.on("message", (msg) => {
 	if(msg.author.bot) return;
-
-
-	// TODO: Place in its own module
-  var day = new Date().getDate(); //get todays day
-  if (today != day) {
-    today = day
-    //take 10% from all users
-  }
 
 	if (msg.content.startsWith("!")) {
     var args = msg.content.split(" ");
