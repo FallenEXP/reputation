@@ -18,16 +18,6 @@ if (conresult == true) {
   console.log("MySQL error! "+conresult)
 }
 
-let commands = [];
-global.api = {
-	addCommand = function(name, callback) {
-		commands.push({name: name, callback: callback})
-	}
-	onMessage = function(callback) {
-		client.on('message',callback)
-	}
-}
-
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
 });
@@ -45,15 +35,15 @@ client.on("message", (msg) => {
   }
   if (cmd == "!ping") {
     msg.channel.send({embed:{
-    //"color": 0,
-    "timestamp": new Date(),
-    "fields": [
-      {
-        "name": ":ping_pong: Ping",
-        "value": "todo: Get Ping in MS"
-      }
-    ]
-  }});
+      //"color": 0,
+      "timestamp": new Date(),
+      "fields": [
+        {
+          "name": ":ping_pong: Ping",
+          "value": "todo: Get Ping in MS"
+        }
+      ]
+    }});
   }
 });
 
