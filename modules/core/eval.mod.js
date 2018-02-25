@@ -1,13 +1,13 @@
 exports.modID = "eval";
 exports.load = function() {
 	api.addCommand('eval', msg=>{
-    if(admins.includes(msg.author.id)) {
+    if(config.admins.includes(msg.author.id)) {
       var code = msg.content.substring(6)
       try {
         var result = eval(code)
         msg.channel.send({embed:{
           "title": "Eval",
-          "color": colors.good,
+          "color": config.colors.good,
           "fields": [
             {
               "name": ":inbox_tray: Input",
@@ -22,7 +22,7 @@ exports.load = function() {
       } catch(err) {
         msg.channel.send({embed:{
           "title": "Eval",
-          "color": colors.error,
+          "color": config.colors.error,
           "fields": [
             {
               "name": ":inbox_tray: Input",

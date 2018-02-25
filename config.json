@@ -1,4 +1,13 @@
 {
+  "admins": [
+    "244905301059436545",
+    "216346350936260611"
+  ]
+  "colors": {
+    "good": 3066993,
+    "warning": 13849600,
+    "error": 12597547
+  },
   "roles": {
 		"owner": "Leader",
 		"moderators": "Mods",
