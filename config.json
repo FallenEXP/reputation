@@ -1,3 +1,8 @@
 {
-  "adminRank": ""
+  "roles": {
+		"owner": "Leader",
+		"moderators": "Mods",
+		"developers": "Devs",
+		"bots": "Robots"
+	}
 }
