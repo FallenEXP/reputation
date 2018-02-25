@@ -1,4 +1,4 @@
-const mysql = require("mysql")
+const mysql = require("sync-mysql")
 
 var connection;
 
@@ -10,13 +10,8 @@ exports.connect = function(user, pass, host, db) {
     database : db
   });
   conn.connect()
-  conn.query('SELECT `id` FROM `userdata`', function (error, results, fields) {
-    if (error) {
-      return error
-    } else {
-      return true
-    }
-  })
+  var result = conn.query('SELECT `id` FROM `userdata`')
+  return result;
 }
 
 exports.close = function() {
@@ -24,11 +19,5 @@ exports.close = function() {
 }
 
 exports.query = function(query) {
-  conn.query(query, function (error, results, fields) {
-    if (error) {
-      return error
-    } else {
-      return results
-    }
-  })
+  return conn.query(query)
 }
