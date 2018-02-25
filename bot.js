@@ -1,5 +1,4 @@
 const Discord = require("discord.js");
-const colors = require('colors');
 const client = new Discord.Client();
 const db = require("./utils/mysql.js");
 const fs = require("fs");
@@ -11,12 +10,12 @@ var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
 
-console.log("Attempting mysql connection...".yellow)
+console.log("Attempting mysql connection...")
 var conresult = db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb)
 if (conresult == true) {
-  console.log("MySQL connection established".green)
+  console.log("MySQL connection established at "+mysqlhost)
 } else {
-  console.log("MySQL error!".red+conresult)
+  console.log("MySQL error! "+conresult)
 }
 
 client.on('ready', () => {
