@@ -27,9 +27,9 @@ global.api = {
 				desc: undefined,
 				usage: undefined
 			};
-	    return {
-				setDescription: desc => api.commands.setDescription(name,desc);
-				setUsage: usage => api.commands.setUsage(name,usage);
+			return {
+				setDescription: desc => {api.commands.setDescription(name,desc);},
+				setUsage: usage => {api.commands.setUsage(name,usage)}
 			};
 		},
 		remove: function(name) {
