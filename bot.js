@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const colors = require('colors');
 const client = new Discord.Client();
 const db = require("./utils/mysql.js");
 const fs = require("fs");
