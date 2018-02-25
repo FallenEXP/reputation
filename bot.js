@@ -18,3 +18,9 @@ client.login(process.env.token);
 client.on('ready', () => {
   console.log((`[BOT] Logged in as ${client.user.tag}!`).green);
 });
+
+client.on("message", (message) => {
+  if (message.content.startsWith("ping")) {
+    message.channel.send("pong!");
+  }
+});
