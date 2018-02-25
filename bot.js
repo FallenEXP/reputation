@@ -1,7 +1,3 @@
-
-/////////////////////
-// Simple Bot Base //
-/////////////////////
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const fs = require("fs"); // Idk this is good for loading json files.
@@ -29,7 +25,8 @@ client.on("message", (msg) => {
   if (msg.content.startsWith("!")) {
     var args = msg.content.split(" ")
     var cmd = args[0].substring(1).toLowerCase()
-    }
+    var ment = msg.mentions
+  }
   if (cmd == "ping") {
     msg.channel.send("pong!");
   }
