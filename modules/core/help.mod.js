@@ -9,7 +9,7 @@ exports.load = function() {
     msg.channel.send({embed:{
       "title": "Help",
       "color": parseInt(config.colors.info,16),
-      "content": output
+      "description": output
     }});
 	})
 }
