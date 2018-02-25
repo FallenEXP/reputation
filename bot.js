@@ -19,7 +19,7 @@ if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
 let commands = {};
 global.api = {
 	addCommand: function(name, callback) {
-		commands['name'] = callback;
+		commands[name] = callback;
 	},
 	onMessage: function(callback) {
 		client.on('message',callback)
