@@ -3,6 +3,7 @@ const client = new Discord.Client();
 const db = require("./utils/mysql.js");
 const fs = require("fs");
 const config = JSON.parse(fs.readFileSync('config.json'))
+var admins = ["244905301059436545", "216346350936260611"]
 
 var mysqluser = process.env.mysqluser;
 var mysqlpass = process.env.mysqlpass;
@@ -59,14 +60,14 @@ client.on("message", (msg) => {
     var args = msg.content.split(" ");
     var cmd = args[0].substring(1).toLowerCase();
     if(cmd == "eval") {
-      if(msg.author.id == '216346350936260611') {
+      if(admins.includes(msg.author.id)) {
         try {
           msg.channel.send(eval(msg.content.substring(6)))
         } catch(err) {
           msg.channel.send("**Error**: " + clean(err))
         }
       } else {
-        msg.channel.send('You are not filip.')
+        msg.channel.send('You are not admin.')
       }
     }
 		if(cmd in commands) {
