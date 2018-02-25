@@ -4,6 +4,7 @@ const db = require("./utils/mysql.js");
 const fs = require("fs");
 const config = JSON.parse(fs.readFileSync('config.json'))
 var admins = ["244905301059436545", "216346350936260611"]
+var colors = {"good": 3066993, "warning": 13849600, "error": 12597547}
 
 var mysqluser = process.env.mysqluser;
 var mysqlpass = process.env.mysqlpass;
@@ -65,8 +66,8 @@ client.on("message", (msg) => {
         try {
           var result = eval(code)
           msg.channel.send({embed:{
-            "title": "Developer EVAL",
-            "color": 255280,
+            "title": "Eval",
+            "color": colors.good,
             "fields": [
               {
                 "name": ":inbox_tray: Input",
@@ -80,8 +81,8 @@ client.on("message", (msg) => {
           }});
         } catch(err) {
           msg.channel.send({embed:{
-            "title": "Developer EVAL",
-            "color": 255280,
+            "title": "Eval",
+            "color": colors.error,
             "fields": [
               {
                 "name": ":inbox_tray: Input",
