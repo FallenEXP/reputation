@@ -22,6 +22,9 @@ global.api = {
 	addCommand: function(name, callback) {
 		commands[name] = callback;
 	},
+  removeCommand: function(name) {
+    commands[name].delete;
+  },
 	//automatically excludes bots
 	onMessage: function(callback) {
 		client.on('message',function(msg) {
@@ -59,7 +62,24 @@ client.on("message", (msg) => {
     var args = msg.content.split(" ");
     var cmd = args[0].substring(1).toLowerCase();
 		if(cmd in commands) {
-			commands[cmd](msg);
+      try {
+			  commands[cmd](msg);
+      } catch(err) {
+        msg.channel.send({embed:{
+          "title": cmd+" Failed",
+          "color": parseInt(config.colors.error,16),
+          "fields": [
+            {
+              "name": ":x: Error",
+              "value": "```js\n"+err.toString()+"```"
+            },
+            {
+              "name": ":inbox_tray: Error Reporting",
+              "value": "If you believe that this error was cause by a bug, please report it at [GitHub](https://github.com/Filip9696/reputation/issues)."
+            }
+          ]
+        }});
+      }
 		}
   }
 });
