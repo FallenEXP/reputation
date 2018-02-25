@@ -6,10 +6,7 @@ exports.load = function() {
       var code = msg.content.substring(6)
       try {
         var result = eval(code);
-				if(result === undefined) result = 'undefined';
-				if(typeof result === 'object') {
-					result = util.inspect(result, {showHidden: false, depth: 10});
-				}
+				result = util.inspect(result, {showHidden: false, depth: 10});
         msg.channel.send({embed:{
           "title": "Eval",
           "color": parseInt(config.colors.good,16),
