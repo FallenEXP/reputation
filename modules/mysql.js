@@ -1,3 +1,5 @@
+const mysql = require("mysql")
+
 var connection;
 
 exports.connect = function(user, pass, host, db) {
