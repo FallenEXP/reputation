@@ -1,6 +1,6 @@
 exports.modID = "eval";
 exports.load = function() {
-	api.addCommand('eval', msg=>{
+	api.addCommand('eval', 'Developer only command for testing', '<code>', msg=>{
     if(config.admins.includes(msg.author.id)) {
       var code = msg.content.substring(6)
       try {

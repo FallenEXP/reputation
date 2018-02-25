@@ -18,8 +18,10 @@ if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
 }
 
 let commands = {};
+global.commandHelp = []
 global.api = {
-	addCommand: function(name, callback) {
+	addCommand: function(name, description, usage, callback) {
+    commandHelp.push({"name": name, "desc": description, "usage": usage})
 		commands[name] = callback;
     return true
 	},
