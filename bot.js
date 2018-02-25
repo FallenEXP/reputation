@@ -89,7 +89,7 @@ global.api = {
 			})
 		}
 		// Load mod
-		api[mod.name] = mod.load();
+		api[mod.modID] = mod.load();
 		console.log(`Loaded Module '${mod.name}'`);
 	}
 	Object.keys(okModules).forEach(function(k) {
