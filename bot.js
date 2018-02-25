@@ -32,6 +32,15 @@ global.api = {
 	}
 }
 
+require("./utils/walkSync.js")('modules').filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
+	try {
+		require(file);
+		console.log("Loaded "+file);
+	} catch (e) {
+		console.log("Cannot Load "+file+": "+e);
+	}
+});
+
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
 });
@@ -40,6 +49,8 @@ var today;
 client.on("message", (msg) => {
 	if(msg.author.bot) return;
 
+
+	// TODO: Place in its own module
   var day = new Date().getDate(); //get todays day
   if (today != day) {
     today = day
