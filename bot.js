@@ -1,10 +1,10 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const db = require("./utils/mysql.js");
+global.db = require("./utils/mysql.js");
 const fs = require("fs");
 const config = JSON.parse(fs.readFileSync('config.json'))
-var admins = ["244905301059436545", "216346350936260611"]
-var colors = {"good": 3066993, "warning": 13849600, "error": 12597547}
+global.admins = ["244905301059436545", "216346350936260611"]
+global.colors = {"good": 3066993, "warning": 13849600, "error": 12597547}
 
 var mysqluser = process.env.mysqluser;
 var mysqlpass = process.env.mysqlpass;
@@ -60,45 +60,6 @@ client.on("message", (msg) => {
 	if (msg.content.startsWith("!")) {
     var args = msg.content.split(" ");
     var cmd = args[0].substring(1).toLowerCase();
-    if(cmd == "eval") {
-      if(admins.includes(msg.author.id)) {
-        var code = msg.content.substring(6)
-        try {
-          var result = eval(code)
-          msg.channel.send({embed:{
-            "title": "Eval",
-            "color": colors.good,
-            "fields": [
-              {
-                "name": ":inbox_tray: Input",
-                "value": "```js\n"+code+"```"
-              },
-              {
-                "name": ":outbox_tray: Output",
-                "value": "```js\n"+result+"```"
-              }
-            ]
-          }});
-        } catch(err) {
-          msg.channel.send({embed:{
-            "title": "Eval",
-            "color": colors.error,
-            "fields": [
-              {
-                "name": ":inbox_tray: Input",
-                "value": "```js\n"+code+"```"
-              },
-              {
-                "name": ":x: Error",
-                "value": "```js\n"+err.toString()+"```"
-              }
-            ]
-          }});
-        }
-      } else {
-        msg.channel.send('You are not admin.')
-      }
-    }
 		if(cmd in commands) {
 			commands[cmd](msg);
 		}
