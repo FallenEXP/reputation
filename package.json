@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Filip9696/reputation#readme",
   "dependencies": {
+    "colors": "^1.1.2",
     "discord.js": "^11.3.0"
   }
 }
