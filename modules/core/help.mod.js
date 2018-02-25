@@ -5,9 +5,10 @@ exports.load = function() {
     commandHelp.forEach(function(cmd) {
       output += "\n**"+cmd.name+" "+cmd.usage+"** >> "+cmd.desc
     })
+    console.log(output)
     msg.channel.send({embed:{
       "title": "Help",
-      "color": parseInt(config.colors.error,16),
+      "color": parseInt(config.colors.info,16),
       "content": output
     }});
 	})
