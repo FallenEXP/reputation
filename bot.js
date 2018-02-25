@@ -17,6 +17,7 @@ if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
 }
 // END TODO SECTION
 
+// collapse this when editing, that might help
 global.api = {
 	config: global.config = JSON.parse(fs.readFileSync('config.json')),
 	commands: {
@@ -24,8 +25,8 @@ global.api = {
 		add: function(name, callback) {
 			api.commands.registeredCommands[name] = {
 				callback: callback,
-				desc: undefined,
-				usage: undefined
+				desc: '<No Description>',
+				usage: ''
 			};
 			return {
 				setDescription: desc => {api.commands.setDescription(name,desc);},
@@ -54,25 +55,49 @@ global.api = {
 			};
 		}
 	},
-	//automatically excludes bots
+	client: client,
 	onMessage: function(callback) {
 		client.on('message',function(msg) {
 			if(!msg.author.bot) callback();
 		});
 	},
-	client: client,
+	modules: {}
 }
 
-require("./utils/walkSync.js").walkSync('modules')[0].filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
-	try {
-		let mod = require("./"+file);
-		if('load' in mod && 'modID' in mod) {
-			mod.load();
-		} else throw "Missing Information"
-	} catch (e) {
-		console.log("Cannot Load "+file+": "+e);
+{
+	// Module Loading, keep this inside {} so okModules get cleaned
+	let okModules = {};
+	console.log("Searching For Modules.");
+	require("./utils/walkSync.js").walkSync('modules')[0].filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
+		try {
+			let mod = require("./"+file);
+			mod.loaded = false;
+			if('load' in mod && 'modID' in mod) {
+				okModules[mod.modID] = mod;
+			} else throw "Missing Information"
+		} catch (e) {
+			console.error("Cannot Load Module File "+file+": "+e);
+		}
+	});
+	let tryModuleLoad(mod) {
+		if('dependencies' in mod) {
+			mod.dependencies.forEach(function(dep) {
+				if(!(dep in okModules)) throw dep + ' is not a valid module';
+				tryModuleLoad(okModules[dep]);
+			})
+		}
+		// Load mod
+		modules[mod.name] = mod.load();
 	}
-});
+	Object.keys(okModules).forEach(function(k) {
+		try {
+			tryModuleLoad(okModules[k]);
+		} catch (e) {
+			console.error("Cannot Load Module '"+k+"': "+e);
+		}
+	})
+}
+
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
