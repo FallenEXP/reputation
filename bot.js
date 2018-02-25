@@ -41,16 +41,16 @@ global.api = {
 			if(!(name in api.commands.registeredCommands)) return false;
 			api.commands.registeredCommands[name].desc = desc;
 			return {
-				setDescription: desc => api.commands.setDescription(name,desc);
-				setUsage: usage => api.commands.setUsage(name,usage);
+				setDescription: desc => {api.commands.setDescription(name,desc);},
+				setUsage: usage => {api.commands.setUsage(name,usage)}
 			};
 		},
 		setUsage: function(name,usage) {
 			if(!(name in api.commands.registeredCommands)) return false;
 			api.commands.registeredCommands[name].usage = usage;
 			return {
-				setDescription: desc => api.commands.setDescription(name,desc);
-				setUsage: usage => api.commands.setUsage(name,usage);
+				setDescription: desc => {api.commands.setDescription(name,desc);},
+				setUsage: usage => {api.commands.setUsage(name,usage)}
 			};
 		}
 	},
