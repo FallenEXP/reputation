@@ -2,7 +2,7 @@ const mysql = require("sync-mysql")
 
 var connection;
 
-exports.connect = function(user, pass, host, db) {
+exports.connect = function(host, user, pass, db) {
   conn = new mysql({
     host     : host,
     user     : user,
