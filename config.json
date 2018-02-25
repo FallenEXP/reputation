@@ -14,5 +14,11 @@
 		"moderators": "Mods",
 		"developers": "Devs",
 		"bots": "Robots"
-	}
+	},
+  "evalVeryBannedTerms": [
+    "process"
+  ],
+  "evalBannedTerms": [
+    "process", "msg.channel.send", "msg.author.send"
+  ]
 }
