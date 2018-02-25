@@ -1,0 +1,10 @@
+{
+  "token": "",
+  "mysql":{
+    "host": "filipkin.com",
+    "user": "",
+    "password": "",
+    "database": ""
+  },
+  "adminRank": ""
+}
