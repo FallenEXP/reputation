@@ -9,7 +9,6 @@ exports.connect = function(user, pass, host, db) {
     password : pass,
     database : db
   });
-  conn.connect()
   var result = conn.query('SELECT `id` FROM `userdata`')
   return result;
 }
