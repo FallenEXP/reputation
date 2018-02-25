@@ -68,7 +68,7 @@ global.api = {
 	let okModules = {};
 	let bannedmodids=Object.keys(api);
 	console.log("Searching For Modules.");
-	require("./utils/walkSync.js").walkSync('modules')[0].filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
+	require("./utils/walkSync.js").walkSync('modules').filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
 		try {
 			let mod = require("./"+file);
 			mod.loaded = false;
