@@ -9,7 +9,10 @@ var mysqlpass = process.env.mysqlpass;
 var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
-console.log(db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb))
+if(!db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb)) {
+	// Major Problem
+	console.log("MYSQL DATABASE NOT CONNECTED");
+}
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
