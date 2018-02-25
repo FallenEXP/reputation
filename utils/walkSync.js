@@ -6,4 +6,4 @@ function walkSync(dir) {
         ? Array.prototype.concat(...FileSystem.readdirSync(dir).map(f => walkSync(Path.join(dir, f))))
         : dir;
 }
-exports.walkSync = readDirR;
+exports.walkSync = walkSync;
