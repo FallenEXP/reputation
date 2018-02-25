@@ -6,7 +6,6 @@ Submit ideas and bugs in issues section
 
 ### Database
 * Do mysql connection
-* Get heroku auto building from github
 * implement database for peoples
 
 ### Reptation
