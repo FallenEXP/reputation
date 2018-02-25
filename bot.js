@@ -61,10 +61,38 @@ client.on("message", (msg) => {
     var cmd = args[0].substring(1).toLowerCase();
     if(cmd == "eval") {
       if(admins.includes(msg.author.id)) {
+        var code = msg.content.substring(6)
         try {
-          msg.channel.send(eval(msg.content.substring(6)))
+          var result = eval(code)
+          msg.channel.send({embed:{
+            "title": "Developer EVAL",
+            "color": 255280,
+            "fields": [
+              {
+                "name": ":inbox_tray: Input",
+                "value": "```js\n"+code+"```"
+              },
+              {
+                "name": ":outbox_tray: Output",
+                "value": "```js\n"+result+"```"
+              }
+            ]
+          }});
         } catch(err) {
-          msg.channel.send("**Error**: " + err.toString())
+          msg.channel.send({embed:{
+            "title": "Developer EVAL",
+            "color": 255280,
+            "fields": [
+              {
+                "name": ":inbox_tray: Input",
+                "value": "```js\n"+code+"```"
+              },
+              {
+                "name": ":x: Error",
+                "value": "```js\n"+err.toString()+"```"
+              }
+            ]
+          }});
         }
       } else {
         msg.channel.send('You are not admin.')
