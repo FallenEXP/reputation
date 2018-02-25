@@ -101,8 +101,9 @@ client.on('ready', () => {
 	require('./utils/onClose.js').onClose(function() {
 		client.guilds.get('417148353638563850')
 			.channels.get('417346778816577548')
-				.send(':x: Bot is shutting down');
-		client.destroy();
+				.send(':x: Bot is shutting down').then(e=>{
+					client.destroy();
+				});
 	});
 });
 
