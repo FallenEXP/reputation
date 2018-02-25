@@ -3,10 +3,10 @@ exports.modID = "db";
 //exports.dependencies = [];
 exports.load = function() {
 	let exp = {}; // Exported Functions
-
+	let conn;
 	exp.connect = function() {
 		try {
-			global.conn = new MySQL({
+			conn = new MySQL({
 		    host     : process.env.mysqlhost,
 		    user     : process.env.mysqluser,
 		    password : process.env.mysqlpass,
@@ -15,7 +15,7 @@ exports.load = function() {
 		} catch (e) {
 			return e;
 		}
-	  return true;
+	  return conn;
 	}
 
 	exp.close = function() {
