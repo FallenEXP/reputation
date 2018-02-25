@@ -1,7 +1,9 @@
-const fs = require('fs');
-const path = require('path');
-let walkSync = (dir, filelist = []) => fs.readdirSync(dir)
- .map(file => fs.statSync(path.join(dir, file)).isDirectory()
-	  ? walkSync(path.join(dir, file), filelist)
-	  : filelist.concat(path.join(dir, file))[0]);
-exports.walkSync = walkSync;
+const FileSystem = require('fs');
+const Path = require('path');
+
+function walkSync(dir) {
+    return FileSystem.statSync(dir).isDirectory()
+        ? Array.prototype.concat(...FileSystem.readdirSync(dir).map(f => walkSync(Path.join(dir, f))))
+        : dir;
+}
+exports.walkSync = readDirR;
