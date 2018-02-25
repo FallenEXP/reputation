@@ -21,9 +21,11 @@ let commands = {};
 global.api = {
 	addCommand: function(name, callback) {
 		commands[name] = callback;
+    return true
 	},
   removeCommand: function(name) {
     commands[name].delete;
+    return true
   },
 	//automatically excludes bots
 	onMessage: function(callback) {
