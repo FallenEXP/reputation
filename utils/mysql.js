@@ -20,16 +20,16 @@ exports.close = function() {
 }
 
 exports.getRep = function(snowflake) {
-	var results = query('SELECT * FROM `userdata` WHERE `snowflake` = '+snowflake)
+	var results = conn.query('SELECT * FROM `userdata` WHERE `snowflake` = '+snowflake)
 	return results
 }
 
 exports.addUser = function(snowflake) {
-	var results = query('INSERT INTO `userdata` (`id`, `snowflake`, `rep`) VALUES (NULL, "'+snowflake+'", "0")')
+	var results = conn.query('INSERT INTO `userdata` (`id`, `snowflake`, `rep`) VALUES (NULL, "'+snowflake+'", "0")')
 	return results
 }
 
 exports.setRep = function(snowflake, rep) {
-	var results = query('UPDATE `userdata` SET `rep` = '+rep+' WHERE `userdata`.`snowflake` = "'+snowflake+'"')
+	var results = conn.query('UPDATE `userdata` SET `rep` = '+rep+' WHERE `userdata`.`snowflake` = "'+snowflake+'"')
 	return results
 }
