@@ -9,7 +9,7 @@ var mysqlpass = process.env.mysqlpass;
 var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
-console.log(mysql.connect(mysqluser, mysqlpass, mysqlhost, mysqldb))
+console.log(db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb))
 
 client.login(process.env.token);
 
