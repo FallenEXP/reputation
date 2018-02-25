@@ -9,51 +9,49 @@ var mysqlpass = process.env.mysqlpass;
 var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
-
-console.log("Attempting mysql connection...")
-var conresult = db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb)
-if (conresult == true) {
-  console.log("MySQL connection established at "+mysqlhost)
+console.log("Attempting mysql connection...".yellow)
+if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
+  console.log("MySQL connection established".green)
 } else {
-  console.log("MySQL error! "+conresult)
+  console.log("MySQL error!".red+conresult)
 }
 
-let commands = [];
+let commands = {};
 global.api = {
 	addCommand = function(name, callback) {
-		commands.push({name: name, callback: callback})
-	}
+		commands['name'] = callback;
+	},
 	onMessage = function(callback) {
 		client.on('message',callback)
+	},
+	getRep = function () {
+		//todo
+	},
+	addRep = function () {
+		//todo
 	}
 }
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
 });
+
 var today;
 client.on("message", (msg) => {
+	if(msg.author.bot) return;
+
   var day = new Date().getDate(); //get todays day
   if (today != day) {
     today = day
     //take 10% from all users
   }
-  if (msg.content.startsWith("!")) {
+
+	if (msg.content.startsWith("!")) {
     var args = msg.content.split(" ");
     var cmd = args[0].substring(1).toLowerCase();
-    var ment = msg.mentions;
-  }
-  if (cmd == "!ping") {
-    msg.channel.send({embed:{
-    //"color": 0,
-    "timestamp": new Date(),
-    "fields": [
-      {
-        "name": ":ping_pong: Ping",
-        "value": "todo: Get Ping in MS"
-      }
-    ]
-  }});
+		if(cmd in commands) {
+			commands[cmd](msg);
+		}
   }
 });
 
