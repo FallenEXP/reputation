@@ -4,7 +4,16 @@ exports.load = function() {
     if(config.admins.includes(msg.author.id)) {
       var code = msg.content.substring(6)
       try {
-        var result = eval(code)
+        var result = eval(code);
+				if(result === undefined) result = 'undefined';
+				if(typeof result === 'object') {
+					try {
+						let json = JSON.stringify(result);
+						result = json;
+					} catch (e) {
+						// do nothihng
+					}
+				}
         msg.channel.send({embed:{
           "title": "Eval",
           "color": parseInt(config.colors.good,16),
