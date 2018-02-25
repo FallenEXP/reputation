@@ -20,7 +20,7 @@ exports.close = function() {
 }
 
 
-exports.getRep(id) {
+exports.getRep = function(id) {
 	var results = query('SELECT * FROM `userdata` WHERE `id` = '+id)
 	return results
 }
