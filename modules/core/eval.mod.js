@@ -1,6 +1,6 @@
 exports.modID = "eval";
 exports.load = function() {
-	api.addCommand('eval', 'Developer only command for testing', '<code>', msg=>{
+	api.commands.add('eval', msg=>{
     if(config.admins.includes(msg.author.id)) {
       var code = msg.content.substring(6)
       try {
@@ -39,4 +39,6 @@ exports.load = function() {
       msg.channel.send('You are not admin.')
     }
 	});
+	api.commands.setDescription('eval','Developer only command for testing');
+	api.commands.setUsage('eval','<code>');
 }

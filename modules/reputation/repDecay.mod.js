@@ -1,5 +1,6 @@
 exports.modID = "repDecay";
 exports.load = function() {
+	let today;
 	api.onMessage(function() {
 		var day = new Date().getDate(); //get todays day
 	  if (today != day) {

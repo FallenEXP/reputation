@@ -1,15 +1,17 @@
 exports.modID = "help";
 exports.load = function() {
-	api.addCommand('help', 'Shows this message', '', msg=>{
+	api.commands.add('help', msg=>{
 		var output = "**Command <required> [optional]** >> Description";
-    commandHelp.forEach(function(cmd) {
-      output += "\n**"+cmd.name+" "+cmd.usage+"** >> "+cmd.desc
+
+    Object.keys(api.commands.registeredCommands).forEach(function(key) {
+			let cmd = api.commands.registeredCommands[key];
+      output += "\n**!"+key+" "+cmd.usage+"** >> "+cmd.desc
     })
-    console.log(output)
+
     msg.channel.send({embed:{
       "title": "Help",
       "color": parseInt(config.colors.info,16),
       "description": output
     }});
-	})
+	}).setDescription('Shows This Message');
 }

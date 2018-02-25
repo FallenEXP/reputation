@@ -1,46 +1,66 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-global.db = require("./utils/mysql.js");
 const fs = require("fs");
-global.config = JSON.parse(fs.readFileSync('config.json'))
 
+//TODO: make a database module
+global.db = require("./utils/mysql.js");
 var mysqluser = process.env.mysqluser;
 var mysqlpass = process.env.mysqlpass;
 var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
-//TODO: make a database module
 console.log("Attempting mysql connection...")
 if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
   console.log("MySQL connection established")
 } else {
   console.log("MySQL error! "+conresult)
 }
+// END TODO SECTION
 
-let commands = {};
-global.commandHelp = []
 global.api = {
-	addCommand: function(name, description, usage, callback) {
-    commandHelp.push({"name": name, "desc": description, "usage": usage})
-		commands[name] = callback;
-    return true
-	},
-  removeCommand: function(name) {
-    commands[name].delete;
-    return true
-  },
+	config: global.config = JSON.parse(fs.readFileSync('config.json')),
+	commands: {
+		registeredCommands = {};
+		add: function(name, callback) {
+			api.commands.registeredCommands[name] = {
+				callback: callback,
+				desc: undefined,
+				usage: undefined
+			};
+	    return {
+				setDescription: desc => api.commands.setDescription(name,desc);
+				setUsage: usage => api.commands.setUsage(name,usage);
+			};
+		},
+		remove: function(name) {
+			if(!(name in api.commands.registeredCommands)) return false;
+			delete api.commands.registeredCommands[name];
+			return true;
+	  },
+		setDescription: function(name, desc) {
+			if(!(name in api.commands.registeredCommands)) return false;
+			api.commands.registeredCommands[name].desc = desc;
+			return {
+				setDescription: desc => api.commands.setDescription(name,desc);
+				setUsage: usage => api.commands.setUsage(name,usage);
+			};
+		},
+		setUsage: function(name,usage) {
+			if(!(name in api.commands.registeredCommands)) return false;
+			api.commands.registeredCommands[name].usage = usage;
+			return {
+				setDescription: desc => api.commands.setDescription(name,desc);
+				setUsage: usage => api.commands.setUsage(name,usage);
+			};
+		}
+	}
 	//automatically excludes bots
 	onMessage: function(callback) {
 		client.on('message',function(msg) {
 			if(!msg.author.bot) callback();
-		})
+		});
 	},
-	getRep: function () {
-		//todo
-	},
-	addRep: function () {
-		//todo
-	}
+	client: client,
 }
 
 require("./utils/walkSync.js").walkSync('modules')[0].filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
@@ -58,16 +78,13 @@ client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
 });
 
-var today;
 client.on("message", (msg) => {
 	if(msg.author.bot) return;
-
 	if (msg.content.startsWith("!")) {
-    var args = msg.content.split(" ");
-    var cmd = args[0].substring(1).toLowerCase();
-		if(cmd in commands) {
+    let cmd = msg.content.split(" ")[0].substring(1).toLowerCase();
+		if(cmd in api.commands.registeredCommands) {
       try {
-			  commands[cmd](msg);
+			  api.commands.registeredCommands[cmd].callback(msg);
       } catch(err) {
         msg.channel.send({embed:{
           "title": cmd+" Failed",
