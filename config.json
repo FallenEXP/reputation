@@ -4,9 +4,9 @@
     "216346350936260611"
   ],
   "colors": {
-    "good": 3066993,
-    "warning": 13849600,
-    "error": 12597547
+    "good": "2ecc71",
+    "warning": "d35400",
+    "error": "c0392b"
   },
   "roles": {
 		"owner": "Leader",

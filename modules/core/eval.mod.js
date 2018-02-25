@@ -7,7 +7,7 @@ exports.load = function() {
         var result = eval(code)
         msg.channel.send({embed:{
           "title": "Eval",
-          "color": config.colors.good,
+          "color": parseInt(config.colors.good,16),
           "fields": [
             {
               "name": ":inbox_tray: Input",
@@ -22,7 +22,7 @@ exports.load = function() {
       } catch(err) {
         msg.channel.send({embed:{
           "title": "Eval",
-          "color": config.colors.error,
+          "color": parseInt(config.colors.error,16),
           "fields": [
             {
               "name": ":inbox_tray: Input",
