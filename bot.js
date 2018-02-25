@@ -92,6 +92,11 @@ global.api = {
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
+
+	// Send in `#devs` in `reputation`
+	client.guilds.get('417148353638563850')
+		.channels.get('417346778816577548')
+			.send('Bot is up, '+process.env.HEROKU_RELEASE_VERSION);
 });
 
 client.on("message", (msg) => {
