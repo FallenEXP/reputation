@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
-const mysql = requre("modules/mysql.js")
+const mysql = require("modules/mysql.js")
 const fs = require("fs"); // Idk this is good for loading json files.
 const config = JSON.parse(fs.readFileSync('config.json'))
 
