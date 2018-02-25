@@ -61,39 +61,42 @@ global.api = {
 			if(!msg.author.bot) callback();
 		});
 	},
-	modules: {}
 }
 
 {
 	// Module Loading, keep this inside {} so okModules get cleaned
 	let okModules = {};
+	let bannedmodids=Object.keys(api);
 	console.log("Searching For Modules.");
 	require("./utils/walkSync.js").walkSync('modules')[0].filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
 		try {
 			let mod = require("./"+file);
 			mod.loaded = false;
 			if('load' in mod && 'modID' in mod) {
+				if(typeof mod.modID !== 'string') throw `exports.modID must be a string (Found ${typeof mod.modID})`;
+				if(typeof mod.load !== 'function') throw `exports.load must be a function (Found ${typeof mod.load})`;
 				okModules[mod.modID] = mod;
-			} else throw "Missing Information"
+			} else throw "Missing `load` function or `modID` field."
 		} catch (e) {
-			console.error("Cannot Load Module File "+file+": "+e);
+			console.error(`Cannot Load Module File ${file}: ${e}`);
 		}
 	});
 	let tryModuleLoad = function(mod) {
 		if('dependencies' in mod) {
 			mod.dependencies.forEach(function(dep) {
-				if(!(dep in okModules)) throw dep + ' is not a valid module';
+				if(!(dep in okModules)) throw `${dep} is not a valid module`;
 				tryModuleLoad(okModules[dep]);
 			})
 		}
 		// Load mod
-		api.modules[mod.name] = mod.load();
+		api[mod.name] = mod.load();
+		console.log(`Loaded Module '${mod.name}'`);
 	}
 	Object.keys(okModules).forEach(function(k) {
 		try {
 			tryModuleLoad(okModules[k]);
 		} catch (e) {
-			console.error("Cannot Load Module '"+k+"': "+e);
+			console.error(`Cannot Load Module '${k}': ${e}`);
 		}
 	})
 }
