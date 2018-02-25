@@ -7,7 +7,10 @@
     "good": "2ecc71",
     "warning": "d35400",
     "error": "c0392b",
-    "info": "2980b9"
+    "info": "2980b9",
+    "lotsOfRep": "2ECC71",
+    "noRep": "F1C40F",
+    "lotsOfNegRep": "C0392B"
   },
   "roles": {
 		"owner": "Leader",
