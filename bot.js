@@ -49,7 +49,7 @@ global.api = {
 }
 
 // Module Loading, keep this inside {} so okModules get cleaned
-(function(){
+{
 	let okModules = {};
 	let bannedmodids=Object.keys(api);
 	console.log("Searching For Modules.");
@@ -84,7 +84,7 @@ global.api = {
 			console.error(`Cannot Load Module '${k}': ${e}`);
 		}
 	})
-})();
+}
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
