@@ -20,7 +20,7 @@ if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
 global.api = {
 	config: global.config = JSON.parse(fs.readFileSync('config.json')),
 	commands: {
-		registeredCommands = {};
+		registeredCommands: {};
 		add: function(name, callback) {
 			api.commands.registeredCommands[name] = {
 				callback: callback,
