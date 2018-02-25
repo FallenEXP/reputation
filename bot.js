@@ -10,7 +10,7 @@ var mysqlpass = process.env.mysqlpass;
 var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
-console.log(db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb))
+console.log(db.connect(mysqlhost, mysqluser, mysqlpass, mysqldb))
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
