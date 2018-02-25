@@ -87,7 +87,7 @@ global.api = {
 			})
 		}
 		// Load mod
-		modules[mod.name] = mod.load();
+		api.modules[mod.name] = mod.load();
 	}
 	Object.keys(okModules).forEach(function(k) {
 		try {
