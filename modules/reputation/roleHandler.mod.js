@@ -19,6 +19,6 @@ exports.load = function() {
 	});
 
 	return {
-		output: return JSON.stringify(output)
+		output: JSON.stringify(output)
 	}
 }
