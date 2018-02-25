@@ -79,7 +79,7 @@ global.api = {
 			console.error("Cannot Load Module File "+file+": "+e);
 		}
 	});
-	let tryModuleLoad(mod) {
+	let tryModuleLoad = function(mod) {
 		if('dependencies' in mod) {
 			mod.dependencies.forEach(function(dep) {
 				if(!(dep in okModules)) throw dep + ' is not a valid module';
