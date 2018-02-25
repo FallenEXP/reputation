@@ -75,7 +75,10 @@ global.api = {
 		}
 		// Load mod
 		let loadedMod = mod.load();
-		if(loadedMod) api[mod.modID] = loadedMod;
+		// cannot be string, boolean, or undefined to be added to api.
+		if(!['string','boolean','undefined'].includes(typeof loadedMod)) {
+			api[mod.modID] = loadedMod;
+		}
 		console.log(`Loaded Module '${mod.modID}'`);
 	}
 	Object.keys(okModules).forEach(function(k) {
