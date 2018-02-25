@@ -34,7 +34,7 @@ global.api = {
 
 require("./utils/walkSync.js").walkSync('modules')[0].filter(p=>p.endsWith('.mod.js')).forEach(function(file) {
 	try {
-		require(file);
+		require("./"+file);
 		console.log("Loaded "+file);
 	} catch (e) {
 		console.log("Cannot Load "+file+": "+e);
