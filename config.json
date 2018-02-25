@@ -21,7 +21,5 @@
   "evalVeryBannedTerms": [
     "process"
   ],
-  "evalBannedTerms": [
-    "process", "msg.channel.send", "msg.author.send"
-  ]
+  "numOfColorRoles": 50
 }

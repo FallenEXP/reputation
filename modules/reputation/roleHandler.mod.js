@@ -5,9 +5,11 @@ exports.dependencies = [];
 exports.load = function() {
 	var tinygradient = require("tinygradient")
 
-	var names = tinygradient({color: '#C0392B', pos: 0}, {color: '#F1C40F', pos: 0.5}, {color: '#2ECC71', pos: 1})
+	var names = tinygradient({color: '#'+api.config.colors.lotsOfNegRep, pos: 0},
+	{color: '#'+api.config.colors.noRep, pos: 0.5},
+	{color: '#'+api.config.colors.lotsOfRep, pos: 1})
 
-	var colors = names.rgb(40)
+	var colors = names.rgb(api.config.numOfColorRoles)
 
 	var output = [];
 
