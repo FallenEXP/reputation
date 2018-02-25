@@ -1,22 +1,26 @@
-const mysql = require("sync-mysql")
+const MySQL = require("sync-mysql");
+let conn;
 
-var connection;
+module.exports = {}
 
-exports.connect = function(user, pass, host, db) {
-  conn = new mysql({
-    host     : host,
-    user     : user,
-    password : pass,
-    database : db
-  });
-  var result = conn.query('SELECT `id` FROM `userdata`')
-  return result;
+module.exports.connect = function(user, pass, host, db) {
+	try {
+		let conn = new MySQL({
+	    host     : host,
+	    user     : user,
+	    password : pass,
+	    database : db
+	  });
+	} catch (e) {
+		return false;
+	}
+  return true;
 }
 
-exports.close = function() {
+module.exports.close = function() {
   conn.end()
 }
 
-exports.query = function(query) {
+module.exports.query = function(query) {
   return conn.query(query)
 }
