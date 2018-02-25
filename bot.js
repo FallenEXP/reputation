@@ -10,11 +10,11 @@ var mysqlhost = process.env.mysqlhost;
 var mysqldb = process.env.mysqldb;
 
 //TODO: make a database module
-console.log("Attempting mysql connection...".yellow)
+console.log("Attempting mysql connection...")
 if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
-  console.log("MySQL connection established".green)
+  console.log("MySQL connection established")
 } else {
-  console.log("MySQL error!".red+conresult)
+  console.log("MySQL error! "+conresult)
 }
 
 let commands = {};
