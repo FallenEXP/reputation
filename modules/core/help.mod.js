@@ -11,7 +11,8 @@ exports.load = function() {
     msg.channel.send({embed:{
       "title": "Help",
       "color": parseInt(config.colors.info,16),
-      "description": output
+      "description": output,
+			"footer": "reputation bot "+process.env.HEROKU_RELEASE_VERSION
     }});
 	}).setDescription('Shows This Message');
 }

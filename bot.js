@@ -2,21 +2,6 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const fs = require("fs");
 
-//TODO: make a database module
-global.db = require("./utils/mysql.js");
-var mysqluser = process.env.mysqluser;
-var mysqlpass = process.env.mysqlpass;
-var mysqlhost = process.env.mysqlhost;
-var mysqldb = process.env.mysqldb;
-
-console.log("Attempting mysql connection...")
-if (db.connect(mysqluser, mysqlpass, mysqlhost, mysqldb) == true) {
-  console.log("MySQL connection established")
-} else {
-  console.log("MySQL error! "+conresult)
-}
-// END TODO SECTION
-
 // collapse this when editing, that might help
 global.api = {
 	config: global.config = JSON.parse(fs.readFileSync('config.json')),
@@ -63,8 +48,8 @@ global.api = {
 	},
 }
 
-{
-	// Module Loading, keep this inside {} so okModules get cleaned
+// Module Loading, keep this inside {} so okModules get cleaned
+(function(){
 	let okModules = {};
 	let bannedmodids=Object.keys(api);
 	console.log("Searching For Modules.");
@@ -99,8 +84,7 @@ global.api = {
 			console.error(`Cannot Load Module '${k}': ${e}`);
 		}
 	})
-}
-
+})();
 
 client.on('ready', () => {
   console.log(`[BOT] Logged in as ${client.user.tag}!`);
