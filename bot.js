@@ -109,7 +109,7 @@ client.on('ready', () => {
 client.on("message", (msg) => {
 	if(msg.author.bot) return;
 	if (msg.content.startsWith("!")) {
-    let cmd = msg.content.split(" ").substring(1).toLowerCase();
+    let cmd = msg.content.split(" ")[0].substring(1).toLowerCase();
 		if(cmd in api.commands.registeredCommands) {
       try {
 			  api.commands.registeredCommands[cmd].callback(msg);
