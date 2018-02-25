@@ -1,9 +1,7 @@
 const MySQL = require("sync-mysql");
 let conn;
 
-module.exports = {}
-
-module.exports.connect = function(user, pass, host, db) {
+exports.connect = function(user, pass, host, db) {
 	try {
 		let conn = new MySQL({
 	    host     : host,
@@ -17,10 +15,10 @@ module.exports.connect = function(user, pass, host, db) {
   return true;
 }
 
-module.exports.close = function() {
+exports.close = function() {
   conn.end()
 }
 
-module.exports.query = function(query) {
+exports.query = function(query) {
   return conn.query(query)
 }
