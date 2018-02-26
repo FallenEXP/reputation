@@ -7,6 +7,10 @@ exports.onClose = function onClose(callback) {
   });
 
   process.on('SIGTERM', function () {
+		callback();
     process.exit();
   });
 };
+for (var i = 0; i <= 50; i++) {
+	repRoles[i.toString()] = null;
+}
