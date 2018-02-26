@@ -21,7 +21,7 @@ exports.load = function() {
 	exp.colors = makeColorArrays();
 
 	exp.repRoles = {};
-	for (var i = 0; i <= 50; i++) {
+	for (var i = 1; i <= 50; i++) {
 		exp.repRoles[i.toString()] = null;
 	}
 
