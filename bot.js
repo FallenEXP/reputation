@@ -102,7 +102,7 @@ client.on('ready', () => {
 		client.guilds.get('417148353638563850')
 			.channels.get('417346778816577548')
 				.send(':x: Bot is shutting down').then(e=>{
-					client.destroy();
+					client.destroy().then(process.exit);
 				});
 	});
 });
