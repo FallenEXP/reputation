@@ -21,7 +21,7 @@ exports.load = function() {
 	exp.colors = makeColorArrays();
 
 	exp.repRoles = {};
-	for (var i = 1; i <= 50; i++) {
+	for (var i = 0; i < api.config.numOfColorRoles; i++) {
 		exp.repRoles[i.toString()] = null;
 	}
 
@@ -40,7 +40,7 @@ exports.load = function() {
 				//Make the role
 				exp.repRoles[key] = g.createRole({
 					name: 'rep' + key,
-					color: exp.colors[key]
+					color: exp.colors[parseInt(key)]
 				});
 			}
 		});
