@@ -14,7 +14,7 @@ exports.load = function() {
 		let output = [];
 
 		colors.forEach( function(obj) {
-			output.push(Math.floor(obj["_r"])*Math.floor(obj["_g"])*Math.floor(obj["_b"]))
+			output.push([Math.floor(obj["_r"]),Math.floor(obj["_g"]),Math.floor(obj["_b"])])
 		});
 		return output;
 	}
