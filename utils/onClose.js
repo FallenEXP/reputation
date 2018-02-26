@@ -6,27 +6,7 @@ exports.onClose = function onClose(callback) {
     callback();
   });
 
-  // catch ctrl+c event and exit normally
-  process.on('SIGINT', function () {
-    callback();
+  process.on('SIGTERM', function () {
     process.exit();
-  });
-
-	process.on('SIGUSR1', function () {
-    callback();
-    process.exit();
-  });
-
-	process.on('SIGUSR2', function () {
-    callback();
-    process.exit();
-  });
-
-  //catch uncaught exceptions, trace, then exit normally
-  process.on('uncaughtException', function(e) {
-		callback();
-    console.log('Uncaught Exception...');
-    console.log(e.stack);
-    process.exit(99);
   });
 };
