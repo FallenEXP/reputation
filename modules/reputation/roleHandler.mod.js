@@ -5,28 +5,29 @@ exports.dependencies = [];
 exports.load = function() {
 	let exp = {};
 
+	//TODO: not use all of these functions
+
 	let makeColorArrays = () => {
 		let names = tinygradient(
 			{color: '#'+api.config.colors.lotsOfNegRep, pos: 0},
 			{color: '#'+api.config.colors.noRep, pos: 0.5},
 			{color: '#'+api.config.colors.lotsOfRep, pos: 1});
-		let colors = names.rgb(api.config.numOfColorRoles);
+		let c = names.rgb(api.config.numOfColorRoles);
 		let output = [];
 
-		colors.forEach( function(obj) {
+		c.forEach( function(obj) {
 			output.push([Math.floor(obj["_r"]),Math.floor(obj["_g"]),Math.floor(obj["_b"])])
 		});
 		return output;
 	}
-	exp.colors = makeColorArrays();
+	let colors = makeColorArrays();
 
 	exp.repRoles = {};
 	for (var i = 0; i < api.config.numOfColorRoles; i++) {
 		exp.repRoles[i.toString()] = null;
 	}
-
 	// Checks if all n roles exist
-	exp.checkRoles = () => {
+	let checkRoles = () => {
 		let g = api.client.guilds.get('417148353638563850');
 		let roles = g.roles;
 		roles.forEach(function(value, key) {
@@ -47,6 +48,8 @@ exports.load = function() {
 			}
 		});
 	}
+
+	checkRoles();
 
 	return exp;
 }

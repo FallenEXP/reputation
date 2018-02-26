@@ -9,7 +9,7 @@ exports.load = function() {
 				result = util.inspect(result, {showHidden: false, depth: 10});
         msg.channel.send({embed:{
           "title": "Eval",
-          "color": parseInt(config.colors.good,16),
+          "color": parseInt(config.colors.good,2),
           "fields": [
             {
               "name": ":inbox_tray: Input",
