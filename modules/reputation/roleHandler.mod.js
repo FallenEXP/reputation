@@ -22,7 +22,7 @@ exports.load = function() {
 
 	exp.repRoles = {};
 	for (var i = 0; i <= 50; i++) {
-		repRoles[i.toString()] = null;
+		exp.repRoles[i.toString()] = null;
 	}
 
 	// Checks if all n roles exist
@@ -38,7 +38,7 @@ exports.load = function() {
 		Object.keys(exp.repRoles).forEach(function(key) {
 			if(exp.repRoles[key] == null) {
 				//Make the role
-				g.createRole({
+				exp.repRoles[key] = g.createRole({
 					name: 'rep' + key,
 					color: exp.colors[key]
 				});
