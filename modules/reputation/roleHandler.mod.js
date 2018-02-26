@@ -27,7 +27,7 @@ exports.load = function() {
 
 	// Checks if all n roles exist
 	exp.checkRoles = () => {
-		let g = api.client.guild.get('417148353638563850');
+		let g = api.client.guilds.get('417148353638563850');
 		let roles = g.roles;
 		roles.forEach(function(value, key) {
 			if(value.name.startsWith('rep')) {
