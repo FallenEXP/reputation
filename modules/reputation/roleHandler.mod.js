@@ -38,9 +38,11 @@ exports.load = function() {
 		Object.keys(exp.repRoles).forEach(function(key) {
 			if(exp.repRoles[key] == null) {
 				//Make the role
-				exp.repRoles[key] = g.createRole({
+				g.createRole({
 					name: 'rep' + key,
 					color: exp.colors[parseInt(key)]
+				}).then(function(r) {
+					exp.repRoles[key] = r;
 				});
 			}
 		});
