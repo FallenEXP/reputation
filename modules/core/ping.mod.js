@@ -1,5 +1,5 @@
-exports.modID = "ping";
-exports.load = function() {
+exports.id = "ping";
+exports.onLoad = function() {
 	api.commands.add('ping', msg=>{
 		msg.channel.send('Pong!');
 	})

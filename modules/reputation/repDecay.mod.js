@@ -1,5 +1,5 @@
-exports.modID = "repDecay";
-exports.load = function() {
+exports.id = "repDecay";
+exports.onLoad = function() {
 	let today;
 	api.onMessage(function() {
 		var day = new Date().getDate(); //get todays day

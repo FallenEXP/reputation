@@ -18,8 +18,6 @@
 		"developers": "Devs",
 		"bots": "Robots"
 	},
-  "evalVeryBannedTerms": [
-    "process"
-  ],
-  "numOfColorRoles": 49
+  "numOfColorRoles": 49,
+  "commandPrefix": "!"
 }

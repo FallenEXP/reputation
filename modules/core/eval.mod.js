@@ -1,6 +1,6 @@
 const util = require('util');
-exports.modID = "eval";
-exports.load = function() {
+exports.id = "eval";
+exports.onLoad = function() {
 	api.commands.add('eval', msg=>{
     if(config.admins.includes(msg.author.id)) {
       var code = msg.content.substring(6)

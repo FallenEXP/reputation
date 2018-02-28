@@ -1,5 +1,5 @@
-exports.modID = 'flip';
-exports.load = function() {
+exports.id = 'flip';
+exports.onLoad = api => {
 	api.commands.add('flip', msg=>{
 		var flip = Math.floor(Math.random() * 2) + 1;
         if (flip == 1) {

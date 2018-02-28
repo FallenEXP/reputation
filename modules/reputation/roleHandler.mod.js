@@ -1,8 +1,8 @@
 const tinygradient = require("tinygradient")
-exports.modID = "roleHandler";
+exports.id = "roleHandler";
 // Array of other modules that are needed to be loaded BEFORE this one.
 exports.dependencies = [];
-exports.load = function() {
+exports.onLoad = function() {
 	let exp = {};
 
 	//TODO: not use all of these functions

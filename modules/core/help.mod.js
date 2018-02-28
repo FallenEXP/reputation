@@ -1,5 +1,5 @@
-exports.modID = "help";
-exports.load = function() {
+exports.id = "help";
+exports.onLoad = function() {
 	api.commands.add('help', msg=>{
 		var output = "**Command <required> [optional]** >> Description";
 

@@ -5,11 +5,11 @@
  */
 
 // Unique Identifier, should be the filename.
-exports.modID = "template";
+exports.id = "template";
 // Array of other modules that are needed to be loaded BEFORE this one.
 exports.dependencies = ['other_module'];
 // Function on when your module actually laods
-exports.load = function() {
+exports.onLoad = api => {
 	// Full Access to the custom API in here
 	api.commands.add('test', msg=>{
 		// command callback

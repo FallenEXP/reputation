@@ -1,7 +1,7 @@
 const MySQL = require("sync-mysql");
-exports.modID = "db";
+exports.id = "db";
 //exports.dependencies = [];
-exports.load = function() {
+exports.onLoad = function() {
 	let exp = {}; // Exported Functions
 	let conn;
 	exp.connect = function() {
