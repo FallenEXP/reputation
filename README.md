@@ -2,20 +2,20 @@
 Todo
 
 ## Ideas
-Please submit all ideas in the Issues tab with the idea tag
-Good ideas will go to the todo list below
+Please submit all ideas in the Issues tab with the idea tag.
+Good ideas will go to the todo list below.
 
 # Todo List
-Submit ideas and bugs in issues section
+Submit ideas and bugs in issues section.
 ## Major
 ### Database
-* Do mysql connection
-* implement database for peoples
+* Do MySQL connection.
+* Implement database for people.
 ### Reptation
-* do like getReputation(user) thing
-* role color is changed depending on reputation. Red fading to green
-* make a way to give reputation
-* deleting many messages in a row could make reputation go down lol 
-* if too many negative reputation >> ban
+* Create getReputation(user).
+* Role color is changed depending on reputation. Red fading to green with red being bad and green being good.
+* Make a way to give reputation.
+* Deleting many messages in a row could make reputation go down. 
+* If you have too much negative reputation, you can get banned.
 ## Minor
-* readme.md
+* Better README.md
