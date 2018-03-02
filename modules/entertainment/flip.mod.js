@@ -5,7 +5,7 @@ exports.onLoad = api => {
         if (flip == 1) {
             msg.reply('You have flipped heads! :red_circle:');
         } else {
-            msg.reply(`You have flipped tails! :large_blue_circle:`);
+            msg.reply('You have flipped tails! :large_blue_circle:');
         }
 	}).setDescription('Flip a Coin!');
 }
